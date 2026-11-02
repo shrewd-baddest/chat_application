@@ -1,0 +1,20 @@
+{
+  "name": "distributed-chat",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "install:all": "npm install && npm --prefix server install && npm --prefix client install",
+    "dev:node1": "cross-env NODE_ENV_FILE=.env.node1 node server/src/startNode.js",
+    "dev:node2": "cross-env NODE_ENV_FILE=.env.node2 node server/src/startNode.js",
+    "dev:client": "npm --prefix client run dev",
+    "dev": "concurrently -n node1,node2,client -c blue,magenta,green \"npm run dev:node1\" \"npm run dev:node2\" \"npm run dev:client\"",
+    "test": "node --test tests/*.test.js",
+    "start:redis": "docker compose up redis -d",
+    "start:redis:wsl": "wsl -d Ubuntu -u root sh -lc \"apt-get update && apt-get install -y redis-server && redis-server --daemonize yes\"",
+    "status:redis:wsl": "wsl -d Ubuntu redis-cli ping"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "cross-env": "^7.0.3"
+  }
+}
