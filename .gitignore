@@ -5,3 +5,4 @@ dist/
 .env.node1
 .env.node2
 *.log
+logs/

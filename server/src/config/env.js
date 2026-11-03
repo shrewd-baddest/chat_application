@@ -34,6 +34,8 @@ export function loadConfig(env = process.env) {
     jwtSecret: env.JWT_SECRET,
     jwtExpiresIn: env.JWT_EXPIRES_IN.trim(),
     redisUrl: env.REDIS_URL.trim(),
-    clientOrigin: env.CLIENT_ORIGIN.trim()
+    clientOrigin: env.CLIENT_ORIGIN.trim(),
+    logLevel: env.LOG_LEVEL?.trim() || "info",
+    logFile: env.LOG_FILE?.trim() || null
   });
 }
